@@ -1,0 +1,23 @@
+version : '2'
+services :
+  apache : 
+    build : .
+    links : 
+      - phpmyadmin
+      - mysql
+    ports :
+      - "8001:80"
+  phpmyadmin :
+    image : phpmyadmin/phpmyadmin
+    ports : 
+     - "8080:80"
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+  mysql :
+    image : mysql
+    environment :
+      MYSQL_ROOT_PASSWORD: coucou
+      MYSQL_DATABASE: dbdatabase
+
